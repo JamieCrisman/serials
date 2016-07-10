@@ -1,0 +1,23 @@
+<% provide(:title, @user[:username]) %>
+
+<h1> Welcome to <%= @user[:username] %>'s Profile </h1>
+
+<% if !display_users_posts.nil? %>
+   <blockquote class="accounts-posts">
+        <% display_users_posts.each do |post| %>
+         
+                <ul>
+                    <b><p><%=post[:title] %></p></b>
+                </ul>
+                <ul>
+                    <p><%= display_n_words(post[:body], 20) %></p>
+                </ul>
+                <ul>
+                    <p><small><%= link_to "read more...", post %></small></p>
+                </ul>
+                <div id="dashed-line"></div>
+        <% end %>
+    <blockquote>
+<% else %>
+    <h3> <%= @user[:username] %> has no posts </h3>
+<% end %>

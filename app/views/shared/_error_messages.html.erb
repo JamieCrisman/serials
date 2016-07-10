@@ -1,0 +1,5 @@
+<% if !@user.nil? and @user.errors %>
+    <% @user.errors.each do |name, error| %>
+        <li><center><%=name %>: <%=error %><center></li>
+    <% end %>
+<% end %>

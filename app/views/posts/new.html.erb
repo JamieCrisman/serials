@@ -1,0 +1,23 @@
+<% if logged_in? %>
+    <h1> <%= current_user[:username] %>'s home page </h1>
+    <%= link_to "#{current_user[:username]}'s profile",current_user  %>
+    <center> 
+    <div class="col-md-8 col-md-offset-2">
+    <%= form_for(@post) do |f| %>
+            <%= f.label :title %>
+            <%= f.text_field :title, class: 'form-control'  %>
+
+            <%= f.label :body %>
+            <%= f.text_area :body, class: 'text form-control', rows: 15, cols: 8%>
+
+            <%= f.submit "Create Post", class: 'btn btn-primary' %>
+
+             <div id="result"><b>
+            Words: <span id="wordCount">0</span><br/></b>
+        </div>
+    <% end %>
+    </div>
+</center>
+    <% else %>
+        <h1> Must be logged in to create post </h1>
+<% end %>

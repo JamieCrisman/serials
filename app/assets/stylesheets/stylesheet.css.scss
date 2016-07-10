@@ -1,0 +1,23 @@
+@import  "bootstrap-sprockets";
+@import "bootstrap";
+
+.accounts-posts{
+   position: absolute;
+   
+   float:bottom;
+   margin-left: 10%;
+}
+
+#dashed-line{
+    margin-top : 2%;
+    margin-bottom : 2%;
+    margin-left :10%;
+    margin-right :10%;
+    border-top : 1px solid #CCC;
+}
+
+.post{
+    margin-top: 10%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
