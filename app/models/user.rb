@@ -10,4 +10,6 @@ class User < ActiveRecord::Base
     has_secure_password
     
     has_many :posts
+    has_many :reactions
+    has_many :genres, through: :posts
 end

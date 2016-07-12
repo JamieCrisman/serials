@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712020128) do
+ActiveRecord::Schema.define(version: 20160712021231) do
+
+  create_table "genres", force: :cascade do |t|
+    t.string   "genre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "post_id"
+  end
+
+  add_index "genres", ["post_id"], name: "index_genres_on_post_id"
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",      null: false
