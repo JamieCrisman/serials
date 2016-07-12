@@ -12,4 +12,5 @@ class User < ActiveRecord::Base
     has_many :posts
     has_many :reactions
     has_many :genres, through: :posts
+    has_many :serials
 end

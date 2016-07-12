@@ -7,4 +7,6 @@ class Post < ActiveRecord::Base
 
     belongs_to :user
     has_many :genres
+    belongs_to :serial
+    has_many :reactions
 end
