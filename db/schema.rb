@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712021858) do
+ActiveRecord::Schema.define(version: 20160714021935) do
 
   create_table "genres", force: :cascade do |t|
     t.string   "genre"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20160712021858) do
   add_index "genres", ["post_id"], name: "index_genres_on_post_id"
 
   create_table "posts", force: :cascade do |t|
-    t.string   "title",      null: false
-    t.text     "body",       null: false
+    t.string   "title"
+    t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
@@ -54,14 +54,13 @@ ActiveRecord::Schema.define(version: 20160712021858) do
   add_index "serials", ["user_id"], name: "index_serials_on_user_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",        null: false
-    t.string   "email",           null: false
-    t.string   "password_digest", null: false
+    t.string   "username"
+    t.string   "email"
+    t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end

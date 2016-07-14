@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
     validates :body, presence: true,  length: { maximum: 249, 
                                                                                 tokenizer: lambda {|str| str.scan(/\s+|$/)}}
 
-
+    validates :user_id, presence: true                                                                            
     belongs_to :user
     has_many :genres
     belongs_to :serial
