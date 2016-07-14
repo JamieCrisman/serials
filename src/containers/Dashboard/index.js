@@ -88,6 +88,7 @@ export default class Dashboard extends Component {
       <div className="container">
         <div className="row">
           <div className="col s12">
+            <a href="/login">goto login</a>
             <FilterMenu filters={filters} loadResources={loadResources}/>
             <ResourceList resources={filteredResources}/>
           </div>
