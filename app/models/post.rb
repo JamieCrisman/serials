@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
     attr_reader :body_size
+
     validates :title, presence: true, length: { maximum: 100 }
     validates :body, presence: true
     validate :body_token_count
@@ -11,13 +12,14 @@ class Post < ActiveRecord::Base
     has_many :reactions
 
     def body_token_count
-      if  WordsCounted.count(self.body).token_count > 250
-            errors.add(:post, "body cannot be greater than 250")
+      if  self.word_count > 250
+            errors.add(:post, "body cannot be greater than 250 words")
         end
     end
-
-    def body_size
-        WordsCounted.count(self.body).token_count
-    end
     
+    def word_count
+        words = WordsCounted.count(self.body).token_count
+        numbers = WordsCounted::Tokeniser.new(self.body).tokenise(pattern: /[\p{N},.]+/).count
+        words + numbers
+    end
 end
