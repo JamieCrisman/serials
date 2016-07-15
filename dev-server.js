@@ -38,6 +38,7 @@ var bundler = webpack(webpackConfig);
 browserSync({
   https: false,
   notify: false,
+  port: 13374,
   server: {
     baseDir: "app",
     middleware: [
