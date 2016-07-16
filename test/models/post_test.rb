@@ -27,7 +27,6 @@ class PostTest < ActiveSupport::TestCase
         (1..251).each do 
             @post.body += "a "
         end
-        puts @post.word_count
         assert_not @post.valid?
     end
 
@@ -36,16 +35,19 @@ class PostTest < ActiveSupport::TestCase
         (1..250).each do
             @post.body += "a "
         end
-        puts @post.word_count
         assert @post.valid?
     end
 
-    test "shuld post with special characters" do
+    test "should post with special characters" do
          
         @post.body =  "William S. Burroughs called this ``cut up theory.'' His approach was to take a page of text, divide it into quadrants, rearrange the quadrants, and then read the page across the divisions. He wrote this way; writing, cutting up, shuffling, publishing the result. Collage and randomness applied to words. He saw this as a way of escaping from a prison that words create for us, locking us down into one way of thinking: an idea echoed in Orwell's ``1984,'' where the purpose of NewSpeak was to make ThoughtCrime impossible by making it inexpressible: ``The Revolution will be complete when the language is perfect.''
         William S. Burroughs called this ``cut up theory.'' His approach was to take a page of text, divide it into quadrants, rearrange the quadrants, and then read the page across the divisions. He wrote this way; writing, cutting up, shuffling, publishing the result. Collage and randomness applied to words. He saw this as a way of escaping from a prison that words create for us, locking us down into one way of thinking: an idea echoed in Orwell's ``1984,'' where the purpose of NewSpeak was to make ThoughtCrime impossible by making it inexpressible: ``The Revolution will be complete when the language is perfect.''
         William S. Burroughs called this ``cut up theory.'' "
-        puts "#{@post.word_count} size"
         assert @post.valid?
+    end
+
+    test "should equal to size 10" do
+        @post.body = "I only have $1,023.00 dollars to my name!Thanks Obama."
+        assert @post.word_count == 10
     end
 end

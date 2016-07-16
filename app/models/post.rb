@@ -19,7 +19,7 @@ class Post < ActiveRecord::Base
     
     def word_count
         words = WordsCounted.count(self.body).token_count
-        numbers = WordsCounted::Tokeniser.new(self.body).tokenise(pattern: /[\p{N},.]+/).count
+        numbers = WordsCounted::Tokeniser.new(self.body).tokenise(pattern: /[\p{N}..]+[\p{N},.]+/).count
         words + numbers
     end
 end
