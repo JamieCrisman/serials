@@ -22,9 +22,23 @@ export default class Login extends Component {
   //   });
   // }
 
+  showErrorMessage() {
+    let notification;
+    if(this.state.errorMessage) {
+      notification = (
+        <div className="notification is-danger" if={this.state.errorMessage}>
+          {this.state.errorMessage}
+        </div>
+      );
+    } else {
+      notification = "";
+    }
+    return notification;
+  }
+
   constructor(props) {
     super(props)
-    this.state = {email: "", password: ""};
+    this.state = {email: "", password: "", errorMessage: ""};
     this.onChange = this.onChange.bind(this);
   }
 
@@ -39,13 +53,24 @@ export default class Login extends Component {
     fetch(`${config.apiEntry}/login.json`, {
       method: 'POST',
       headers: {
-        // "Access-Control-Allow-Origin": "*",
-        // "Access-Control-Allow-Headers": "Content-Type,x-requested-with,Authorization,Access-Control-Allow-Origin"
         "content-type": "application/json"
       },
       body: JSON.stringify({email, password})
     }).then((data) => {
-      console.log(data);
+      return data.json()
+    }).then((json) => {
+      if (json.success) {
+        this.setState({errorMessage: ""});
+
+      } else {
+        if(json.error) {
+          this.setState({errorMessage: json.error});
+        }else {
+          this.setState({errorMessage: "There was an issue trying to log in :C"});
+        }
+      }
+    }).catch((data) => {
+      this.setState({errorMessage: "There was an issue trying to log in :C"})
     });
   }
 
@@ -54,6 +79,7 @@ export default class Login extends Component {
       <div className="columns">
         <div className="column is-half is-offset-one-quarter">
           <form className="login-form" onSubmit={this.handleFormSubmit.bind(this)}>
+            {this.showErrorMessage()}
             <div className="control is-horizontal">
               <div className="control-label">
                 <label className="label" htmlFor="email">Email</label>
@@ -75,10 +101,12 @@ export default class Login extends Component {
               </div>
               <div className="control">
                 <input type="password" 
-                  className="input" 
+                  className="input"
                   name="password" 
                   id="password" 
                   required
+                  pattern=".{8,}"
+                  title="Minimum of 8 characters"
                   placeholder="password" 
                   value={this.state.password} 
                   onChange={this.onChange} />

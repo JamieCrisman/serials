@@ -34,6 +34,27 @@ function resources(state = initialResourcesState, action = {}) {
   }
 }
 
+
+const initialUserState = {loading: true};
+
+function resources(state = initialUserState, action = {}) {
+  switch(action.type) {
+    case ActionTypes.FETCH_USER:
+      return Object.assign({}, state, {loading: true});
+    case ActionTypes.RECEIVE_USER:
+      return Object.assign(
+        {},
+        state,
+        {
+          loading: false,
+          user: action.user
+        } // ,
+        // _.omit({filters: action.filters}, _.isUndefined)
+      );
+    default:
+      return state;
+  }
+}
 //TODO: figure this out
 // Transcripts.define({
 //   transcripts: arrayOf(Transcript)

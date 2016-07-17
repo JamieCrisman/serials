@@ -10,14 +10,14 @@ class SessionsController < ApplicationController
     def create
         user = User.find_by(email: params[:session][:email].downcase)
         if (user && user.authenticate(params[:session][:password]))
-            test = {name: 'hi'}
+            test = {success: true, user: user.userDetails}
 
             respond_to do |format|
                 format.html {log_in user; redirect_to new_post_path}
                 format.json {log_in user; render :json => test, :content_type => "text/json"}
             end
         else
-            test = {name: 'error'}
+            test = {success: false, error: "invalid email or password"}
             respond_to do |format|
                 format.html {flash.now[:danger] = "invalid email/password"; render :new}
                 format.json {render :json => test, :content_type => "text/json"}

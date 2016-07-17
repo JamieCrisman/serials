@@ -13,4 +13,11 @@ class User < ActiveRecord::Base
     has_many :reactions
     has_many :genres, through: :posts
     has_many :serials
+
+    def userDetails
+        return {
+            id: self.id,
+            username: self.username
+        }
+    end
 end

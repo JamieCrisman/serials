@@ -35,6 +35,37 @@ export function loadResources(args) { //can pass args
   };
 }
 
+export const RECEIVE_USER = "RECEIVE_USER";
+export const FETCH_USER = "FETCH_USER";
+function receiveUser(args) {
+  const {resources, filters} = args;
+  return {
+    type: RECEIVE_USER,
+    resources,
+    filters
+  };
+}
+
+function fetchUser() {
+  return {
+    type: FETCH_USER
+  };
+}
+
+export function loadUser(args) { //can pass args
+  // const {filters} = args;
+  return dispatch => {
+    dispatch(fetchUser());
+    // TODO
+    // if (resourceData){
+      // dispatch(receiveUser({
+      //   resources: resourceData,
+      //   filters
+      // }));
+    // }
+  };
+}
+
 
 // export const RECEIVE_MOMENT = "RECEIVE_MOMENT";
 // export const FETCH_MOMENT = "FETCH_MOMENT";
