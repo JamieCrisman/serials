@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
     skip_before_action :verify_authenticity_token, if: :api_request?
-
+=begin
     def new
         if logged_in?
             redirect_to new_post_user
@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
         logout
         redirect_to root_path
     end
-
+=end
     private
     def api_request?
         request.format.json? || request.format.xml?

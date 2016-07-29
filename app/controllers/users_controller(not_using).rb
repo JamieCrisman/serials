@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+    before_filter :authenticate_user!
+=begin
     def new
         @user = User.new
     end
@@ -20,7 +21,8 @@ class UsersController < ApplicationController
     
     private 
 
-    def user_params
-        params.require(:user).permit(:username, :email, :password, :password_confirmation)
-    end
+    #def user_params
+       # params.require(:user).permit(:username, :email, :password, :password_confirmation)
+    #end
+=end
 end

@@ -1,6 +1,6 @@
-<% if logged_in? %>
-    <h1> <%= current_user[:username] %>'s home page </h1>
-    <%= link_to "#{current_user[:username]}'s profile",current_user  %>
+<% if user_signed_in? %>
+    <h1> <%= current_user.email %>'s home page </h1>
+    
     <center> 
     <div class="col-md-8 col-md-offset-2">
     <%= form_for(@post) do |f| %>

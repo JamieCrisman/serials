@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
 
+   devise_for :users
    root 'static_pages#home'
    get 'about' => 'static_pages#about'
-   resources :users, only: [:new, :create, :show]
-
+   #resources :users, only: [:new, :create, :show]
+=begin
    get 'signup' => 'users#new'
    post 'signup' => 'users#create'
 
    get 'login' => 'sessions#new'
    post 'login' => 'sessions#create'
    delete 'logout' => 'sessions#destroy'
-
+=end
    resources :posts, only: [:index, :new, :create, :show]
 
      # The priority is based upon order of creation: first created -> highest priority.

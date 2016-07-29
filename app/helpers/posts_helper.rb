@@ -1,5 +1,5 @@
 module PostsHelper
-
+=begin
     def display_users_posts
         posts = User.find(@user[:id]).posts
         return nil if posts.count.zero?
@@ -17,4 +17,5 @@ module PostsHelper
         p+= "..." if p.size != body.size
         return p
     end
+=end
 end

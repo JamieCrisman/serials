@@ -1,5 +1,5 @@
 module SessionsHelper
-
+=begin
     def log_in(user)
         session[:user_id] = user.id
     end
@@ -16,4 +16,5 @@ module SessionsHelper
         session[:user_id] = nil
         @current_user = nil
     end
+=end
 end
